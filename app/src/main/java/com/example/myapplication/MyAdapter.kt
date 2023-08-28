@@ -1,14 +1,21 @@
 package com.example.myapplication
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.databinding.ItemViewBinding
 
-class MyAdapter  : ListAdapter<String, MyAdapter.MyViewHolder>(DiffCallback()){
+class MyAdapter : ListAdapter<String, MyAdapter.MyViewHolder>(DiffCallback()) {
 
-    inner class MyViewHolder():RecyclerView.ViewHolder() {
+    var clickListener: (String) -> Unit = {}
 
+    inner class MyViewHolder(private val myView: ItemViewBinding) :
+        RecyclerView.ViewHolder(myView.root) {
+            fun bind(item: String) {
+                myView.itemViewTextView.text = item
+            }
     }
 
     class DiffCallback : DiffUtil.ItemCallback<String>() {
@@ -22,11 +29,19 @@ class MyAdapter  : ListAdapter<String, MyAdapter.MyViewHolder>(DiffCallback()){
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        TODO("Not yet implemented")
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val itemView = ItemViewBinding.inflate(layoutInflater)
+
+        return MyViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val item = getItem(position)
+
+        holder.bind(item)
+        holder.itemView.setOnClickListener {
+            clickListener.invoke(item)
+        }
     }
 }
 
