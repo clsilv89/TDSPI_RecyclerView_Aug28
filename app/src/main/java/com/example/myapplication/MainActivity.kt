@@ -1,8 +1,9 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +20,60 @@ class MainActivity : AppCompatActivity() {
         "Design Digital", "Design de Jogos", "Analise e Desenvolvimento de Sistemas",
         "Engenharia da Computação", "Direito", "Gastronomia", "Arquitetura e Urbanismo",
         "Design Digital", "Design de Jogos")
+
+    private var userList = arrayListOf(
+        Usuario(
+            nome = "Caio Silva",
+            email = "email@email.com",
+            matricula = "123456",
+            cpf = "987.654.321-00",
+            genero = "MASC",
+            dtNasc = "11/04/1989",
+            curso = list[10],
+            fotoUrl = "https://play-lh.googleusercontent.com/S70rI7VrwLic7_p-ax7iAOOopQhcPCzmqyLe5RLJmApTpkgTRaCwWsTNN1Uv1t_t3Pp5"
+        ),
+        Usuario(
+            nome = "Caio Silva",
+            email = "email@email.com",
+            matricula = "123456",
+            cpf = "987.654.321-00",
+            genero = "MASC",
+            dtNasc = "11/04/1989",
+            curso = list[6],
+            fotoUrl = "https://play-lh.googleusercontent.com/S70rI7VrwLic7_p-ax7iAOOopQhcPCzmqyLe5RLJmApTpkgTRaCwWsTNN1Uv1t_t3Pp5"
+        ),
+        Usuario(
+            nome = "Caio Silva",
+            email = "email@email.com",
+            matricula = "123456",
+            cpf = "987.654.321-00",
+            genero = "MASC",
+            dtNasc = "11/04/1989",
+            curso = list[1],
+            fotoUrl = "https://play-lh.googleusercontent.com/S70rI7VrwLic7_p-ax7iAOOopQhcPCzmqyLe5RLJmApTpkgTRaCwWsTNN1Uv1t_t3Pp5"
+        ),
+        Usuario(
+            nome = "Caio Silva",
+            email = "email@email.com",
+            matricula = "123456",
+            cpf = "987.654.321-00",
+            genero = "MASC",
+            dtNasc = "11/04/1989",
+            curso = list[8],
+            fotoUrl = "https://play-lh.googleusercontent.com/S70rI7VrwLic7_p-ax7iAOOopQhcPCzmqyLe5RLJmApTpkgTRaCwWsTNN1Uv1t_t3Pp5"
+        ),
+        Usuario(
+            nome = "Caio Silva",
+            email = "email@email.com",
+            matricula = "123456",
+            cpf = "987.654.321-00",
+            genero = "MASC",
+            dtNasc = "11/04/1989",
+            curso = list[3],
+            fotoUrl = "https://play-lh.googleusercontent.com/S70rI7VrwLic7_p-ax7iAOOopQhcPCzmqyLe5RLJmApTpkgTRaCwWsTNN1Uv1t_t3Pp5"
+        ),
+    )
+
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,16 +81,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupListView(list)
+        setupListView(userList)
     }
 
-    private fun setupListView(cursos: ArrayList<String>) {
+    private fun setupListView(usuarios: ArrayList<Usuario>) {
         val adapter = MyAdapter()
         adapter.clickListener = {
-            cursos.add(it)
-            adapter.notifyDataSetChanged()
+            val intent = Intent()
+            intent.putExtra("", it)
+
+            println(it.fotoUrl)
         }
-        adapter.submitList(cursos)
+        adapter.submitList(usuarios)
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapter
     }
 }

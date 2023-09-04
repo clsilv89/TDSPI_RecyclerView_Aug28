@@ -1,18 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageViewUserFoto"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/textViewUserCpf"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/textViewUserName" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/itemViewTextView"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/textViewUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/imageViewUserFoto"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/app_name"/>
+        tools:text="Caio Silva" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewUserEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/textViewUserName"
+        app:layout_constraintTop_toBottomOf="@id/textViewUserName"
+        tools:text="email@email.com" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewUserMatricula"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/textViewUserEmail"
+        app:layout_constraintTop_toBottomOf="@id/textViewUserEmail"
+        tools:text="123456" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewUserCpf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/textViewUserMatricula"
+        app:layout_constraintTop_toBottomOf="@id/textViewUserMatricula"
+        tools:text="CPF: 987.654.321.00" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewUserGenero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="MASC" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewUserDtNasc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/textViewUserGenero"
+        app:layout_constraintTop_toBottomOf="@id/textViewUserGenero"
+        tools:text="11/04/1989" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewUserCurso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/textViewUserDtNasc"
+        app:layout_constraintTop_toBottomOf="@id/textViewUserDtNasc"
+        tools:text="11/04/1989" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
