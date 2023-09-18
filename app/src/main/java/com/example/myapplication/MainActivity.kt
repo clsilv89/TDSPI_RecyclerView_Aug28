@@ -1,10 +1,12 @@
 package com.example.myapplication
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.ActivityMainBinding
+import com.google.gson.Gson
 
 class MainActivity : AppCompatActivity() {
     private var list = arrayListOf("Analise e Desenvolvimento de Sistemas",
@@ -87,13 +89,31 @@ class MainActivity : AppCompatActivity() {
     private fun setupListView(usuarios: ArrayList<Usuario>) {
         val adapter = MyAdapter()
         adapter.clickListener = {
-            val intent = Intent()
-            intent.putExtra("", it)
+            val intent = Intent(this, SecondActivity::class.java)
+            intent.putExtra("USUARIO", it)
+            startActivity(intent)
 
-            println(it.fotoUrl)
+            val prefs = this.getSharedPreferences("", Context.MODE_PRIVATE)
+
+            val usuarioString = Gson().toJson(it).toString()
+
+            prefs.edit().putString("USUARIO", usuarioString).apply()
+
         }
         adapter.submitList(usuarios)
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapter
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
