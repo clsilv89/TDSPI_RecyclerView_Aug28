@@ -15,3 +15,5 @@ f
 6app/src/main/java/com/example/myapplication/Usuario.kt,2/1/215de4b8c2d05c29df41fff991906374e7654f1f
 k
 ;app/src/main/java/com/example/myapplication/MainActivity.kt,0/0/00ed33bb9fa3f2577abe71150520b83c93b6af18
+m
+=app/src/main/java/com/example/myapplication/SecondActivity.kt,3/2/32f194e7419516235327ddedcdc13a904cf43124
