@@ -17,3 +17,9 @@ k
 ;app/src/main/java/com/example/myapplication/MainActivity.kt,0/0/00ed33bb9fa3f2577abe71150520b83c93b6af18
 m
 =app/src/main/java/com/example/myapplication/SecondActivity.kt,3/2/32f194e7419516235327ddedcdc13a904cf43124
+m
+=app/src/main/java/com/example/myapplication/PokemonAdapter.kt,c/5/c5987950fe0499f870ea74f215f974a9ba91c6ea
+f
+6app/src/main/java/com/example/myapplication/Pokemon.kt,c/d/cdeb0f5ce2626366453475101f027d831afc5fe2
+o
+?app/src/main/java/com/example/myapplication/PokemonViewModel.kt,5/8/58132246a89ffbc7dc349cb48555c67844b3bff0

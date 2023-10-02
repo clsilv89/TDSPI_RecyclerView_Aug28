@@ -1,9 +1,9 @@
-package com.example.myapplication
+package com.example.myapplication.model
 
 data class PokemonResponse(
     val count: Int? = 0,
     val next: String? = "",
-    val previous: Any? = null,
+    val previous: String? = "",
     val results: List<Pokemon>? = listOf<Pokemon>()
 )
 

@@ -1,10 +1,11 @@
-package com.example.myapplication
+package com.example.myapplication.view
 
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.model.Usuario
 import com.example.myapplication.databinding.ActivitySecondBinding
 import com.google.gson.Gson
 

@@ -1,10 +1,11 @@
-package com.example.myapplication
+package com.example.myapplication.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.model.Pokemon
 import com.example.myapplication.databinding.PokemonItemViewBinding
 
 class PokemonAdapter : ListAdapter<Pokemon, PokemonAdapter.MyViewHolder>(DiffCallback()) {

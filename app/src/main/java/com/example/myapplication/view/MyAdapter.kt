@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.myapplication.R
+import com.example.myapplication.model.Usuario
 import com.example.myapplication.databinding.ItemViewBinding
 
 class MyAdapter : ListAdapter<Usuario, MyAdapter.MyViewHolder>(DiffCallback()) {
