@@ -7,8 +7,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.model.Pokemon
 import com.example.myapplication.databinding.PokemonItemViewBinding
+import com.example.myapplication.model.Usuario
 
 class PokemonAdapter : ListAdapter<Pokemon, PokemonAdapter.MyViewHolder>(DiffCallback()) {
+
+    var clickListener: (Pokemon) -> Unit = {}
 
     inner class MyViewHolder(private val myView: PokemonItemViewBinding) :
         RecyclerView.ViewHolder(myView.root) {
@@ -37,5 +40,8 @@ class PokemonAdapter : ListAdapter<Pokemon, PokemonAdapter.MyViewHolder>(DiffCal
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val pokemon = getItem(position)
         holder.bind(pokemon)
+        holder.itemView.setOnClickListener {
+            clickListener(pokemon)
+        }
     }
 }
