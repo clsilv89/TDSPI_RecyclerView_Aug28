@@ -22,7 +22,7 @@ data class PokemonCompleteData(
     val order: Int,
     val id: Int,
     val height: Int,
-    val width: Int,
+    val weight: Int,
     val types: List<PokemonType>,
     val moves: List<PokemonMoves>,
     val sprites: PokemonSprites
@@ -32,21 +32,21 @@ data class PokemonCompleteData(
 @Parcelize
 data class PokemonSprites(
     @SerializedName(value = "back_default")
-    val backDefault: String,
+    val backDefault: String?,
     @SerializedName(value = "back_female")
-    val backFemale: String,
+    val backFemale: String?,
     @SerializedName(value = "back_shiny")
-    val backShiny: String,
+    val backShiny: String?,
     @SerializedName(value = "back_shiny_female")
-    val backShinyFemale: String,
+    val backShinyFemale: String?,
     @SerializedName(value = "front_default")
-    val frontDefault: String,
+    val frontDefault: String?,
     @SerializedName(value = "front_female")
-    val frontFemale: String,
+    val frontFemale: String?,
     @SerializedName(value = "front_shiny")
-    val frontShiny: String,
+    val frontShiny: String?,
     @SerializedName(value = "front_shiny_female")
-    val frontShinyFemale: String
+    val frontShinyFemale: String?
 ) : Parcelable
 
 @Parcelize

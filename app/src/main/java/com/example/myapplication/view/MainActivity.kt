@@ -43,8 +43,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.pokemonData.observe(this) {
             val intent = Intent(this, SecondActivity::class.java)
             val string = Gson().toJson(it)
-            intent.putExtra("POKEMON_COMPLETE_DATA", string)
-//            intent.putExtra("POKEMON_COMPLETE_DATA", PokemonCompleteData::class.java)
+            intent.putExtra("POKEMON_COMPLETE_DATA", it)
 
             startActivity(intent)
         }
