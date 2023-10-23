@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.model.Pokemon
 import com.example.myapplication.databinding.PokemonItemViewBinding
-import com.example.myapplication.model.Usuario
 
 class PokemonAdapter : ListAdapter<Pokemon, PokemonAdapter.MyViewHolder>(DiffCallback()) {
 
