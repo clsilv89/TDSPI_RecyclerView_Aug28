@@ -1,6 +1,5 @@
 package com.example.myapplication.view
 
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,6 +7,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplication.databinding.PokemonSpriteItemViewBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class PokemonCarouselAdapter :
     ListAdapter<String, PokemonCarouselAdapter.MyViewHolder>(DiffCallback()) {
@@ -17,7 +20,7 @@ class PokemonCarouselAdapter :
 
         fun bind(sprintUrl: String) {
             Glide
-                .with(myView.root.context)
+                .with(this.itemView.context)
                 .load(sprintUrl)
                 .into(myView.imageViewSprite)
         }
@@ -31,7 +34,6 @@ class PokemonCarouselAdapter :
         override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
             return oldItem == newItem
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -47,10 +49,9 @@ class PokemonCarouselAdapter :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val url = getItem(position)
-        Handler().postDelayed(
-            {
-                holder.bind(url)
-            }, 2000
-        )
+        CoroutineScope(Dispatchers.Main).launch {
+            delay(2000)
+            holder.bind(url)
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.myapplication.view
 
+import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.os.Bundle
 import androidx.annotation.RequiresApi
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivitySecondBinding
 import com.example.myapplication.model.PokemonCompleteData
+import com.example.myapplication.model.PokemonType
 
 class SecondActivity : AppCompatActivity() {
 
@@ -32,20 +34,28 @@ class SecondActivity : AppCompatActivity() {
         binding.textViewHeight.text =
             getString(R.string.pokemon_height, pokemon?.height.toString())
         binding.textViewWidth.text = getString(R.string.pokemon_weight, pokemon?.weight.toString())
-        binding.root.setBackgroundColor(getBackgroundColor(pokemon?.types?.get(0)?.type?.name.orEmpty()))
 
-//        if (pokemon != null) {
-//            setupCarouselRecyclerView(getSpritesList(pokemon))
-//        }
+        setBackgroundColor(pokemon?.types.orEmpty())
 
         pokemon?.let {
             setupCarouselRecyclerView(getSpritesList(it))
         }
+    }
 
-//        Glide
-//            .with(this)
-//            .load(pokemon?.sprites?.frontDefault)
-//            .into(binding.imageViewSprite)
+    private fun setBackgroundColor(types: List<PokemonType>) {
+        if (types.size == 1) {
+            binding.root.setBackgroundColor(getBackgroundColor(types.first().type.name))
+        } else {
+            val types = intArrayOf(
+                getBackgroundColor(types.first().type.name),
+                getBackgroundColor(types.last().type.name)
+            )
+            val gradient = GradientDrawable(
+                GradientDrawable.Orientation.LEFT_RIGHT,
+                types
+            )
+            binding.root.background = gradient
+        }
     }
 
     private fun setupCarouselRecyclerView(list: List<String>) {

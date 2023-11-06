@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "535904970701",
+    "project_id": "tdspi-d6a80",
+    "storage_bucket": "tdspi-d6a80.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:535904970701:android:de5450f88fa85b08028684",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsKbHTZD1VADmG4K_fI3XTckfu6yaylTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
