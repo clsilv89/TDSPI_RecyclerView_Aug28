@@ -1,11 +1,17 @@
 package com.example.myapplication.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.myapplication.model.Pokemon
 import com.example.myapplication.model.PokemonCompleteData
 import com.example.myapplication.model.PokemonResponse
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.gson.Gson
 import java.io.IOException
 import okhttp3.Call
@@ -18,6 +24,7 @@ class PokemonViewModel : ViewModel() {
     private var url = "https://pokeapi.co/api/v2/pokemon?limit=100&offset=0"
     private val client = OkHttpClient()
     private val builder = Request.Builder()
+    private val database: DatabaseReference = FirebaseDatabase.getInstance().reference
 
     private val _pokemonList: MutableLiveData<List<Pokemon>> = MutableLiveData()
     val pokemonList: LiveData<List<Pokemon>> = _pokemonList
@@ -68,6 +75,46 @@ class PokemonViewModel : ViewModel() {
                 setLoader(false)
             }
         })
+    }
+
+    fun savePokemonToDatabase(pokemonCompleteData: PokemonCompleteData) {
+        database
+            .child("pokemon")
+//            .child(pokemonCompleteData.id.toString())
+            .push()
+            .setValue(pokemonCompleteData)
+    }
+
+    fun deletePokemopnFromDatabase(pokemonCompleteData: PokemonCompleteData) {
+        database
+            .child("pokemon")
+            .child(pokemonCompleteData.id.toString())
+            .setValue(null)
+    }
+
+    fun getPokemonFromDatabase() {
+// Adicionando direto no caminho     database.child("pokemon/5").get()
+// Buscando dados inexistentes       database.child("pokemon").child("Jorge").get()
+        database.child("pokemon").child("Jorge").get()
+            .addOnSuccessListener {
+                Log.d("Pokemon", it.toString())
+            }
+            .addOnFailureListener {
+                Log.d("Failure", it.message.orEmpty())
+            }
+    }
+
+    fun observeRealtimeDatabase() {
+        database.child("pokemon")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    Log.d("DataSnapshot", snapshot.toString())
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.d("Database Failure", error.message)
+                }
+            })
     }
 
     private fun setLoader(value: Boolean) {
